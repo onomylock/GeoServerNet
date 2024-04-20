@@ -1,0 +1,5 @@
+@GeoServerNet.ApiGetaway_HostAddress = http://localhost:5067
+
+Accept: application/json
+
+###

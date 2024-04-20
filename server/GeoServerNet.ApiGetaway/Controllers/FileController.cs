@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using GeoServerNet.Application.CQRS.Files.Commands;
+using GeoServerNet.Application.CQRS.Files.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GeoServerNet.ApiGetaway.Controllers;

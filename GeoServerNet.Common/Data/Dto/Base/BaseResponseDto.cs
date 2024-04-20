@@ -4,3 +4,8 @@ public interface IBaseResponseDto
 {
     
 }
+
+public record BaseResponseDto : IBaseResponseDto
+{
+    
+}

@@ -4,3 +4,8 @@ public interface IBaseRequestDto
 {
     
 }
+
+public record BaseRequestDto : IBaseRequestDto
+{
+    
+}
