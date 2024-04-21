@@ -2,7 +2,7 @@
 
 public abstract class ScopedBackgroundService(ILogger<ScopedBackgroundService> logger,
  IHostApplicationLifetime hostApplicationLifetime)
- : BackgroundService
+ : BackgroundService, IScopedBackgroundService
 { 
     private TaskCompletionSource TaskCompletionSource { get; set; }
     private bool IsActive { get; set; }

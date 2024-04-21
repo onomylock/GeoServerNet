@@ -12,7 +12,7 @@ public interface ITaskService
 {
     public Task DeleteDirectory(CancellationToken cancellationToken = default);
     public Task ClearDirectory(CancellationToken cancellationToken = default);
-    public Task AddNewTask(int taskId, IEnumerable<DependencyDto> collection, CancellationToken cancellationToken = default);
+    public Task AddNewTask(int taskId, string? arguments, IEnumerable<DependencyDto> collection, CancellationToken cancellationToken = default);
     public Task<GeoServerNet.Server.DAL.Entities.Task> GetTaskById(int id, CancellationToken cancellationToken = default);
     public Task<IReadOnlyCollection<Server.DAL.Entities.Task>> GetCollection(
         CancellationToken cancellationToken = default);
@@ -32,11 +32,12 @@ public sealed class TaskService(ITaskEntityService taskEntityService, ILogger<Ta
         throw new NotImplementedException();
     }
 
-    public async Task AddNewTask(int taskId, IEnumerable<DependencyDto> collection, CancellationToken cancellationToken = default)
+    public async Task AddNewTask(int taskId, string? arguments, IEnumerable<DependencyDto> collection, CancellationToken cancellationToken = default)
     {
-        var task = TaskMapper.ToTask(taskId);
+        var task = TaskMapper.ToTask(taskId, arguments);
         var dependencyCollection = collection.Select(x => DependencyMapper.ToDependency(x, taskId)); 
         task.Dependencies = dependencyCollection.ToList();
+        task.Arguments = arguments;
         await taskEntityService.AddTask(task, cancellationToken);
     }
 

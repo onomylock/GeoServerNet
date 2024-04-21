@@ -1,11 +1,10 @@
-﻿using GeoServerNet.Application.CQRS.Tasks.Commands;
-using Task = GeoServerNet.Server.DAL.Entities.Task;
+﻿using Task = GeoServerNet.Server.DAL.Entities.Task;
 
 namespace GeoServerNet.Application.Mappers;
 
 public static class TaskMapper
 {
-    public static Task ToTask(int taskId) =>
+    public static Task ToTask(int taskId, string? arguments) =>
         new()
         {
             Id = taskId,
@@ -13,6 +12,7 @@ public static class TaskMapper
             EndedAt = default,
             TaskStatus = TaskStatus.Created,
             ExitCode = 0,
+            Arguments = arguments
         };
 
 }

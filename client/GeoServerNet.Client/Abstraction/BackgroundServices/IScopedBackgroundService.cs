@@ -2,5 +2,4 @@
 
 public interface IScopedBackgroundService
 {
-    Task ExecuteAsync(CancellationToken stoppingToken);
 }

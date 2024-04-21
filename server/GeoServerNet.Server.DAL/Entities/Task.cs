@@ -8,5 +8,6 @@ public record Task : EntityBase
     public DateTimeOffset EndedAt { get; set; }
     public TaskStatus TaskStatus { get; set; }
     public int ExitCode { get; set; }
+    public string? Arguments { get; set; }
     public ICollection<Dependency> Dependencies { get; set; } = new List<Dependency>();
 }

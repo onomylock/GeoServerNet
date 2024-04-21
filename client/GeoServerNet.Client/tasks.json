@@ -1,0 +1,142 @@
+{
+  "maxRunning": 3,
+  "failThreshold": 3,
+  "servers": [
+    "http://localhost:8080"
+  ],
+  "tasks": [
+    {
+      "type": "PROCESS",
+      "arguments": [
+        "1500",
+        "1000",
+        "3"
+      ],
+      "executable": "GeoDummyTest.exe",
+      "dependencies": [
+        {
+          "clientName" : "C:\\GeoServerTest\\Program\\GeoDummyTest.exe",
+          "serverName" : "GeoDummyTest.exe"
+        },
+        {
+          "clientName" : "C:\\GeoServerTest\\Test1\\GeoDummyTest_settings",
+          "serverName" : "GeoDummyTest_settings"
+        }
+
+      ],
+      "results": [
+        {
+          "clientName" : "C:\\GeoServerTest\\Results\\Test1\\result.txt",
+          "serverName" : "GeoDummyTest_result"
+        }
+      ],
+
+      "resultFileLists": [
+        {
+          "clientName" : "C:\\GeoServerTest\\Results\\Test1",
+          "serverName" : "ResultFileList"
+        }
+      ]
+    },
+    {
+      "type": "PROCESS",
+      "arguments": [
+        "1500",
+        "1000",
+        "3"
+      ],
+      "executable": "GeoDummyTest.exe",
+      "dependencies": [
+        {
+          "clientName" : "C:\\GeoServerTest\\Program\\GeoDummyTest.exe",
+          "serverName" : "GeoDummyTest.exe"
+        },
+        {
+          "clientName" : "C:\\GeoServerTest\\Test1\\GeoDummyTest_settings",
+          "serverName" : "GeoDummyTest_settings"
+        }
+
+      ],
+      "results": [
+        {
+          "clientName" : "C:\\GeoServerTest\\Results\\Test2\\result.txt",
+          "serverName" : "GeoDummyTest_result"
+        }
+      ],
+
+      "resultFileLists": [
+        {
+          "clientName" : "C:\\GeoServerTest\\Results\\Test2",
+          "serverName" : "ResultFileList"
+        }
+      ]
+    },
+    {
+      "type": "PROCESS",
+      "arguments": [
+        "1500",
+        "1000",
+        "3"
+      ],
+      "executable": "GeoDummyTest.exe",
+      "dependencies": [
+        {
+          "clientName" : "C:\\GeoServerTest\\Program\\GeoDummyTest.exe",
+          "serverName" : "GeoDummyTest.exe"
+        },
+        {
+          "clientName" : "C:\\GeoServerTest\\Test1\\GeoDummyTest_settings",
+          "serverName" : "GeoDummyTest_settings"
+        }
+
+      ],
+      "results": [
+        {
+          "clientName" : "C:\\GeoServerTest\\Results\\Test4\\result.txt",
+          "serverName" : "GeoDummyTest_result"
+        }
+      ],
+
+      "resultFileLists": [
+        {
+          "clientName" : "C:\\GeoServerTest\\Results\\Test4",
+          "serverName" : "ResultFileList"
+        }
+      ]
+    },
+
+    {
+      "type": "PROCESS",
+      "arguments": [
+        "1500",
+        "1000",
+        "3"
+      ],
+      "executable": "GeoDummyTest.exe",
+      "dependencies": [
+        {
+          "clientName" : "C:\\GeoServerTest\\Program\\GeoDummyTest.exe",
+          "serverName" : "GeoDummyTest.exe"
+        },
+        {
+          "clientName" : "C:\\GeoServerTest\\Test2\\GeoDummyTest_settings",
+          "serverName" : "GeoDummyTest_settings"
+        }
+
+      ],
+      "results": [
+        {
+          "clientName" : "C:\\GeoServerTest\\Results\\Test3\\result.txt",
+          "serverName" : "GeoDummyTest_result"
+        }
+      ],
+
+      "resultFileLists": [
+        {
+          "clientName" : "C:\\GeoServerTest\\Results\\Test3",
+          "serverName" : "ResultFileList"
+        }
+      ]
+    }
+  ]
+}

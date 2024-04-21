@@ -8,14 +8,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="ConcurrentPriorityQueue" Version="3.0.0" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+        <PackageReference Include="System.Net.Http" Version="4.3.4" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\GeoServerNet.Common\GeoServerNet.Common.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Services\Http\" />
     </ItemGroup>
 </Project>

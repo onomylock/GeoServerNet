@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoServerNet.Common", "GeoServerNet.Common\GeoServerNet.Common.csproj", "{E6F84452-33D5-4EC2-AB4D-1B81C6D41E6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoServerNet.ApiGetaway", "server\GeoServerNet.ApiGetaway\GeoServerNet.ApiGetaway.csproj", "{9A31E65F-2F13-4B4B-A9D9-DA900BD75AB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoServerNet.Client", "client\GeoServerNet.Client\GeoServerNet.Client.csproj", "{4E9C1E42-0F75-43D7-A886-AF66317DCE03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoServerNet.Application", "server\GeoServerNet.Application\GeoServerNet.Application.csproj", "{D38FCB09-4357-44FD-9863-E613F1B4AD3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoServerNet.Server.DAL", "server\GeoServerNet.Server.DAL\GeoServerNet.Server.DAL.csproj", "{DFB720DC-CFA0-4BF4-88CD-1BF2A05D47BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoServerNet.Client.DAL", "client\GeoServerNet.Client.DAL\GeoServerNet.Client.DAL.csproj", "{2D8F00F7-C695-4057-9444-B7B3D970767E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6F84452-33D5-4EC2-AB4D-1B81C6D41E6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6F84452-33D5-4EC2-AB4D-1B81C6D41E6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6F84452-33D5-4EC2-AB4D-1B81C6D41E6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6F84452-33D5-4EC2-AB4D-1B81C6D41E6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A31E65F-2F13-4B4B-A9D9-DA900BD75AB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A31E65F-2F13-4B4B-A9D9-DA900BD75AB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A31E65F-2F13-4B4B-A9D9-DA900BD75AB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A31E65F-2F13-4B4B-A9D9-DA900BD75AB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E9C1E42-0F75-43D7-A886-AF66317DCE03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E9C1E42-0F75-43D7-A886-AF66317DCE03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E9C1E42-0F75-43D7-A886-AF66317DCE03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E9C1E42-0F75-43D7-A886-AF66317DCE03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D38FCB09-4357-44FD-9863-E613F1B4AD3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D38FCB09-4357-44FD-9863-E613F1B4AD3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D38FCB09-4357-44FD-9863-E613F1B4AD3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D38FCB09-4357-44FD-9863-E613F1B4AD3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFB720DC-CFA0-4BF4-88CD-1BF2A05D47BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFB720DC-CFA0-4BF4-88CD-1BF2A05D47BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFB720DC-CFA0-4BF4-88CD-1BF2A05D47BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFB720DC-CFA0-4BF4-88CD-1BF2A05D47BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D8F00F7-C695-4057-9444-B7B3D970767E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D8F00F7-C695-4057-9444-B7B3D970767E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D8F00F7-C695-4057-9444-B7B3D970767E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D8F00F7-C695-4057-9444-B7B3D970767E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

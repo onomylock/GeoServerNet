@@ -9,6 +9,7 @@ namespace GeoServerNet.Application.CQRS.Tasks.Commands;
 public record AddTaskCommand : BaseRequestDto, IRequest<IBaseResponseDto>
 {
     public int TaskId { get; set; }
+    public string? Arguments { get; set; }
     public required IEnumerable<DependencyDto> DependencyCollectionDto { get; set; }
 }
 
@@ -16,7 +17,7 @@ public sealed class AddTaskCommandHandler(ITaskService taskService) : IRequestHa
 {
     public async Task<IBaseResponseDto> Handle(AddTaskCommand request, CancellationToken cancellationToken)
     {
-        await taskService.AddNewTask(request.TaskId, request.DependencyCollectionDto, cancellationToken);
+        await taskService.AddNewTask(request.TaskId, request.Arguments, request.DependencyCollectionDto, cancellationToken);
         return new OkResponseDto();
     }
 }

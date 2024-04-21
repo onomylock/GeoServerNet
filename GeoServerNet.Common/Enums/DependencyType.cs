@@ -2,5 +2,7 @@
 
 public enum DependencyType
 {
-    
+    Dependencies,
+    Results,
+    ResultFileLists
 }

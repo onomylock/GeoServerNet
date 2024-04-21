@@ -20,9 +20,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\GeoServerNet.Common\GeoServerNet.Common.csproj" />
-      <ProjectReference Include="..\..\GeoServerNet.Server.DAL\GeoServerNet.Server.DAL.csproj" />
       <ProjectReference Include="..\GeoServerNet.Application\GeoServerNet.Application.csproj" />
-    </ItemGroup>
+      <ProjectReference Include="..\GeoServerNet.Server.DAL\GeoServerNet.Server.DAL.csproj" />
+    </ItemGroup>   
 
 </Project>
