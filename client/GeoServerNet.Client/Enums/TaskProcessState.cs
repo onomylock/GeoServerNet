@@ -3,7 +3,17 @@
 public enum TaskProcessState
 {
     Inactive,
-    Active,
+    ReadData,
+    SetLoadData,
+    CompletedConfigure,
+    Sending,
+    Running,
     Paused,
+    Completed,
+    Upload,
+    Download,
+    Delete,
     Terminated
+    
+    
 }
