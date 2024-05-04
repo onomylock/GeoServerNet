@@ -1,36 +1,59 @@
-﻿using GeoServerNet.Client.Algorithms;
+﻿using System.Collections.Concurrent;
+using GeoServerNet.Client.Algorithms;
 using GeoServerNet.Client.Models;
 using GeoServerNet.Client.Options;
-using GeoServerNet.Common.Services;
 
 namespace GeoServerNet.Client.Services;
 
 public interface ITaskClientService
 {
-        
+    Task AddTaskAsync(TaskEntityDto task, CancellationToken cancellationToken = default);
+    Task DeleteTaskAsync(int id, CancellationToken cancellationToken = default);
+    Task StartTaskAsync(int id, CancellationToken cancellationToken = default);
+    Task InvokeTaskState(CancellationToken cancellationToken = default);
+    Task DownloadTaskAsync(CancellationToken cancellationToken = default);
+    Task StopTaskAsync(int id, CancellationToken cancellationToken = default);
 }
 
 public class TaskClientService : ITaskClientService
 {
-    private readonly IWritableOptionsService<StartUpOptions> _writableOptionsService;
-    private readonly IHttpClientFactory _httpClientFactory;
-    private StartUpOptions _startUpOptions;
-    private ITaskAlgorithm _taskAlgorithm;
-    
+    private StartUpOptions? _startUpOptions;
+    private ConcurrentDictionary<int, ITaskAlgorithm>? _taskAlgorithms;
 
-    public TaskClientService(IWritableOptionsService<StartUpOptions> writableTaskOptionsService,
-        IHttpClientFactory httpClientFactory, ITaskAlgorithm taskAlgorithm)
+    public TaskClientService(
+        IConfiguration configuration)
     {
-        _writableOptionsService = writableTaskOptionsService;
-        _httpClientFactory = httpClientFactory;
-        _taskAlgorithm = taskAlgorithm;
-        _writableOptionsService.Change += WritableOptionsServiceOnChange;
+        _startUpOptions = configuration.GetSection(StartUpOptions.StartUp).Get<StartUpOptions>();
+        
     }
-    
-    private void WritableOptionsServiceOnChange(StartUpOptions options, string s = null)
+
+    public Task AddTaskAsync(TaskEntityDto task, CancellationToken cancellationToken = default)
     {
-        _startUpOptions = options;
-        
-        
+        throw new NotImplementedException();
+    }
+
+    public Task DeleteTaskAsync(int id, CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task StartTaskAsync(int id, CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task InvokeTaskState(CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task DownloadTaskAsync(CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task StopTaskAsync(int id, CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
     }
 }

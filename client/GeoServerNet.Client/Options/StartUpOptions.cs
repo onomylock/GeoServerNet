@@ -4,6 +4,8 @@ namespace GeoServerNet.Client.Options;
 
 public record StartUpOptions
 {
+    public static string StartUp = "StartUp";
+    
     [JsonPropertyName("maxRunning")]
     public int MaxRunning { get; set; }
     [JsonPropertyName("failThreshold")]
