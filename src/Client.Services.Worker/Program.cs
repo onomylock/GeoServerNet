@@ -1,4 +1,4 @@
-using Client.Worker;
+using Client.Services.Worker;
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<Worker>();

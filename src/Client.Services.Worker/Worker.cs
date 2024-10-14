@@ -1,4 +1,4 @@
-namespace Client.Worker;
+namespace Client.Services.Worker;
 
 public class Worker : BackgroundService
 {

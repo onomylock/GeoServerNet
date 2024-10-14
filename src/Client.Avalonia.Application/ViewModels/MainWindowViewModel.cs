@@ -1,4 +1,4 @@
-﻿namespace Client.AvaloniaApp.ViewModels;
+﻿namespace Client.Avalonia.Application.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
