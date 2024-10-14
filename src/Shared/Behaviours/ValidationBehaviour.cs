@@ -9,10 +9,11 @@ public class ValidationBehaviour<TRequest, TResponse>(
     IEnumerable<IValidator<TRequest>> validators,
     ILogger<ValidationBehaviour<TRequest, TResponse>> logger)
     : IPipelineBehavior<TRequest, TResponse>
-    where TRequest : IRequest<TResponse> 
+    where TRequest : IRequest<TResponse>
     where TResponse : IDtoResultBase, new()
 {
-    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next,
+        CancellationToken cancellationToken)
     {
         var context = new ValidationContext<TRequest>(request);
 
@@ -24,10 +25,7 @@ public class ValidationBehaviour<TRequest, TResponse>(
             .SelectMany(validationResult => validationResult.Errors)
             .ToList();
 
-        if (errors.Count != 0)
-        {
-            throw new ValidationException(errors);
-        }
+        if (errors.Count != 0) throw new ValidationException(errors);
 
         var response = await next();
 

@@ -45,17 +45,16 @@ public static class ConfigureServicesExtensions
             .ConfigureHttp()
             .AddCommunicationTracker();
     }
-    
+
     private static IServiceCollection ConfigureDiRepositories(this IServiceCollection serviceCollection)
     {
-
         return serviceCollection;
     }
 
     private static IServiceCollection ConfigureDiServices(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
-        
+
         return serviceCollection;
     }
 
@@ -84,10 +83,9 @@ public static class ConfigureServicesExtensions
 
     private static IServiceCollection ConfigureDiConfigureOptions(this IServiceCollection serviceCollection)
     {
-        
         return serviceCollection;
     }
-    
+
     private static IServiceCollection ConfigureDiHangfire(
         this IServiceCollection serviceCollection,
         IHostEnvironment env
@@ -99,16 +97,18 @@ public static class ConfigureServicesExtensions
                 var hangfireOptions = provider.GetRequiredService<IOptions<HangfireOptions>>().Value;
                 var hangfireDbContextOptions = hangfireOptions.DbContextOptions;
 
-                var connectionString = hangfireDbContextOptions.ConnectionString + (!env.IsProduction() ? ";Include Error Detail=true" : "");
+                var connectionString = hangfireDbContextOptions.ConnectionString +
+                                       (!env.IsProduction() ? ";Include Error Detail=true" : "");
 
                 globalConfiguration
                     .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
                     .UseSimpleAssemblyNameTypeSerializer()
                     .UseRecommendedSerializerSettings()
-                    .UsePostgreSqlStorage(options => options.UseNpgsqlConnection(connectionString), new PostgreSqlStorageOptions
-                    {
-                        QueuePollInterval = TimeSpan.FromSeconds(hangfireOptions.QueuePollIntervalSeconds)
-                    });
+                    .UsePostgreSqlStorage(options => options.UseNpgsqlConnection(connectionString),
+                        new PostgreSqlStorageOptions
+                        {
+                            QueuePollInterval = TimeSpan.FromSeconds(hangfireOptions.QueuePollIntervalSeconds)
+                        });
             });
 
         serviceCollection.AddHangfireServer(options =>
@@ -116,23 +116,22 @@ public static class ConfigureServicesExtensions
 
         return serviceCollection;
     }
-    
+
     private static IServiceCollection ConfigureDiOptions(
         this IServiceCollection serviceCollection,
         IConfiguration configuration
     )
     {
         serviceCollection.AddOptions();
-        
-        serviceCollection.AddOptions<HangfireOptions>().Bind(configuration.GetSection(nameof(HangfireOptions))).ValidateDataAnnotations().ValidateOnStart();
+
+        serviceCollection.AddOptions<HangfireOptions>().Bind(configuration.GetSection(nameof(HangfireOptions)))
+            .ValidateDataAnnotations().ValidateOnStart();
 
         return serviceCollection;
     }
 
     private static IServiceCollection ConfigureHttp(this IServiceCollection serviceCollection)
     {
-        
-
         return serviceCollection;
     }
 }

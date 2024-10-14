@@ -27,9 +27,11 @@ public static class ConfigureExtensions
                     "[{httpContextTraceIdentifier}] {httpContextRequestProtocol} {httpContextRequestMethod} {httpContextRequestPath} responded {StatusCode} in {Elapsed:0.0000} ms";
                 options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
                 {
-                    diagnosticContext.Set("httpContextTraceIdentifier", Activity.Current?.Id ?? httpContext.TraceIdentifier);
+                    diagnosticContext.Set("httpContextTraceIdentifier",
+                        Activity.Current?.Id ?? httpContext.TraceIdentifier);
                     diagnosticContext.Set("httpContextConnectionId", httpContext.Connection.Id);
-                    diagnosticContext.Set("httpContextConnectionRemoteIpAddress", httpContext.Connection.RemoteIpAddress);
+                    diagnosticContext.Set("httpContextConnectionRemoteIpAddress",
+                        httpContext.Connection.RemoteIpAddress);
                     diagnosticContext.Set("httpContextConnectionRemotePort", httpContext.Connection.RemotePort);
                     diagnosticContext.Set("httpContextRequestHost", httpContext.Request.Host);
                     diagnosticContext.Set("httpContextRequestPath", httpContext.Request.Path);
@@ -55,7 +57,7 @@ public static class ConfigureExtensions
             .UseWebSockets()
             .UseEndpoints(endpointRouteBuilder => { endpointRouteBuilder.MapControllers(); });
     }
-    
+
     public static void InitBootstrapLogger()
     {
         var configurationRoot = new ConfigurationBuilder()

@@ -1,5 +1,3 @@
-
-
 using FluentValidation;
 using Shared.Enums;
 using Shared.Models;
@@ -33,8 +31,8 @@ public sealed class ValidationExceptionHandlingMiddleware(RequestDelegate next)
 
 public static class ValidationExceptionHandlingMiddlewareExtension
 {
-    public static IApplicationBuilder UseValidationExceptionHandlingMiddleware(this IApplicationBuilder builder)  
-    {  
-        return builder.UseMiddleware<ValidationExceptionHandlingMiddleware>();  
-    }  
+    public static IApplicationBuilder UseValidationExceptionHandlingMiddleware(this IApplicationBuilder builder)
+    {
+        return builder.UseMiddleware<ValidationExceptionHandlingMiddleware>();
+    }
 }

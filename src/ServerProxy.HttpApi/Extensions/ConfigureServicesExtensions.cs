@@ -42,14 +42,14 @@ public static class ConfigureServicesExtensions
             .ConfigureHttp()
             .AddCommunicationTracker();
     }
-    
+
     private static IServiceCollection ConfigureDiRepositories(this IServiceCollection serviceCollection)
     {
-
         return serviceCollection;
     }
 
-    private static IServiceCollection ConfigureDiReverseProxy(this IServiceCollection serviceCollection, IConfiguration configuration)
+    private static IServiceCollection ConfigureDiReverseProxy(this IServiceCollection serviceCollection,
+        IConfiguration configuration)
     {
         serviceCollection.AddReverseProxy()
             .LoadFromConfig(configuration.GetSection("ReverseProxy"));
@@ -60,7 +60,7 @@ public static class ConfigureServicesExtensions
     private static IServiceCollection ConfigureDiServices(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
-        
+
         return serviceCollection;
     }
 
@@ -89,25 +89,22 @@ public static class ConfigureServicesExtensions
 
     private static IServiceCollection ConfigureDiConfigureOptions(this IServiceCollection serviceCollection)
     {
-        
         return serviceCollection;
     }
-    
+
     private static IServiceCollection ConfigureDiOptions(
         this IServiceCollection serviceCollection,
         IConfiguration configuration
     )
     {
         serviceCollection.AddOptions();
-        
+
 
         return serviceCollection;
     }
 
     private static IServiceCollection ConfigureHttp(this IServiceCollection serviceCollection)
     {
-        
-
         return serviceCollection;
     }
 }
