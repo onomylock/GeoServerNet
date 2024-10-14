@@ -1,25 +1,55 @@
+using Serilog;
+using Serilog.Settings.Configuration;
+using ServerNode.HttpApi.Extensions;
+
+ConfigureExtensions.InitBootstrapLogger();
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+//STAGE: ConfigureServices
+builder.Host.UseSerilog((context, services, configuration) =>
+{
+    configuration
+        .ReadFrom.Configuration(context.Configuration, new ConfigurationReaderOptions { SectionName = "Serilog" })
+        .ReadFrom.Services(services)
+        .Enrich.FromLogContext()
+        .Enrich.WithAssemblyName()
+        .Enrich.WithEnvironmentName()
+        .Enrich.WithMachineName()
+        .Enrich.WithMemoryUsage()
+        .Enrich.WithProcessId()
+        .Enrich.WithProcessName()
+        .Enrich.WithThreadId()
+        .Enrich.WithThreadName();
+});
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.InitServerNodeHttpApi();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+//STAGE: Configure
+
+var logger = app.Services.GetRequiredService<ILogger<Program>>();
+
+logger.LogInformation("Environment: {EnvironmentName}", app.Environment.EnvironmentName);
+
+ConfigureExtensions.ConfigureMiddlewarePipeline(app);
+
+try
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    logger.LogInformation("Application setting is finished...");
+
+    app.Run();
+
+    logger.LogInformation("Application stopping...");
 }
+catch (Exception e)
+{
+    logger.LogCritical(e, "An unhandled exception occured during bootstrapping!");
+}
+finally
+{
+    logger.LogInformation("Flushing logs...");
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
+    Log.CloseAndFlush();
+}
