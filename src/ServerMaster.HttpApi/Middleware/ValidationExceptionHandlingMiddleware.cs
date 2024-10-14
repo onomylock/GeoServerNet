@@ -2,7 +2,7 @@ using FluentValidation;
 using Shared.Enums;
 using Shared.Models;
 
-namespace ServerProxy.HttpApi.Middleware;
+namespace ServerMaster.HttpApi.Middleware;
 
 public sealed class ValidationExceptionHandlingMiddleware(RequestDelegate next)
 {

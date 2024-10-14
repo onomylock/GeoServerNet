@@ -1,12 +1,12 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using Client.AvaloniaApp.ViewModels;
-using Client.AvaloniaApp.Views;
+using Client.Avalonia.Application.ViewModels;
+using Client.Avalonia.Application.Views;
 
-namespace Client.AvaloniaApp;
+namespace Client.Avalonia.Application;
 
-public class App : Application
+public class App : global::Avalonia.Application
 {
     public override void Initialize()
     {

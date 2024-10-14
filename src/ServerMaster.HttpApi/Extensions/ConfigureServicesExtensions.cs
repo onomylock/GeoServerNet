@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.OpenApi.Models;
 using Shared.Behaviours;
 
-namespace ServerProxy.HttpApi.Extensions;
+namespace ServerMaster.HttpApi.Extensions;
 
 public static class ConfigureServicesExtensions
 {

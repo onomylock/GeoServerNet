@@ -1,4 +1,4 @@
-namespace ServerProxy.HttpApi;
+namespace ServerMaster.HttpApi;
 
 public class WeatherForecast
 {

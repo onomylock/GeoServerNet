@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServerProxy", "ServerProxy", "{D9C93A13-6B74-4D94-AAAF-86648625C3A7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServerMaster", "ServerMaster", "{D9C93A13-6B74-4D94-AAAF-86648625C3A7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServerNode", "ServerNode", "{4BEBAFCC-F7C5-4925-A2DC-F4BAAF7835B0}"
 EndProject
@@ -17,21 +17,25 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerNode.Infrastructure",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerNode.Domain", "src\ServerNode.Domain\ServerNode.Domain.csproj", "{A93E680B-BD06-42D7-8B0F-3730697C8848}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerProxy.Application", "src\ServerProxy.Application\ServerProxy.Application.csproj", "{287963E8-607E-4BA0-A334-6A6EB3E5CB3E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerMaster.Application", "src\ServerMaster.Application\ServerMaster.Application.csproj", "{287963E8-607E-4BA0-A334-6A6EB3E5CB3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerProxy.Domain", "src\ServerProxy.Domain\ServerProxy.Domain.csproj", "{AC2B0047-0CAC-4103-BF57-581283CB9564}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerMaster.Domain", "src\ServerMaster.Domain\ServerMaster.Domain.csproj", "{AC2B0047-0CAC-4103-BF57-581283CB9564}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerProxy.HttpApi", "src\ServerProxy.HttpApi\ServerProxy.HttpApi.csproj", "{3CEFB01A-9EEB-44D8-97A3-A69FE71E6AAA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerMaster.HttpApi", "src\ServerMaster.HttpApi\ServerMaster.HttpApi.csproj", "{3CEFB01A-9EEB-44D8-97A3-A69FE71E6AAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerProxy.Infrastructure", "src\ServerProxy.Infrastructure\ServerProxy.Infrastructure.csproj", "{458E1FE1-AFE4-4F0E-B126-16796971D9AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerMaster.Infrastructure", "src\ServerMaster.Infrastructure\ServerMaster.Infrastructure.csproj", "{458E1FE1-AFE4-4F0E-B126-16796971D9AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.AvaloniaApp", "src\Client.AvaloniaApp\Client.AvaloniaApp.csproj", "{AE8FE070-4C86-4507-A7F3-C67188F0638F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Avalonia.Application", "src\Client.Avalonia.Application\Client.Avalonia.Application.csproj", "{AE8FE070-4C86-4507-A7F3-C67188F0638F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Worker", "src\Client.Worker\Client.Worker.csproj", "{143697DB-A9B5-479B-A227-6E48BBA65A0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Services.Worker", "src\Client.Services.Worker\Client.Services.Worker.csproj", "{143697DB-A9B5-479B-A227-6E48BBA65A0C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Common", "src\Client.Common\Client.Common.csproj", "{A132BF35-394D-4207-9BF1-723253F3E253}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "src\Shared\Shared.csproj", "{B6802AEE-FE2B-4423-873A-7930F36A5156}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Avalonia", "Avalonia", "{15F1B070-6632-44D3-8098-14D7DB9567A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{398BFF24-CDA2-4D77-80D3-A5BB26573040}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,9 +54,11 @@ Global
 		{AC2B0047-0CAC-4103-BF57-581283CB9564} = {D9C93A13-6B74-4D94-AAAF-86648625C3A7}
 		{3CEFB01A-9EEB-44D8-97A3-A69FE71E6AAA} = {D9C93A13-6B74-4D94-AAAF-86648625C3A7}
 		{458E1FE1-AFE4-4F0E-B126-16796971D9AB} = {D9C93A13-6B74-4D94-AAAF-86648625C3A7}
-		{AE8FE070-4C86-4507-A7F3-C67188F0638F} = {D13AB057-8C1A-4C56-885C-42C5A6E65138}
-		{143697DB-A9B5-479B-A227-6E48BBA65A0C} = {D13AB057-8C1A-4C56-885C-42C5A6E65138}
 		{A132BF35-394D-4207-9BF1-723253F3E253} = {D13AB057-8C1A-4C56-885C-42C5A6E65138}
+		{15F1B070-6632-44D3-8098-14D7DB9567A3} = {D13AB057-8C1A-4C56-885C-42C5A6E65138}
+		{398BFF24-CDA2-4D77-80D3-A5BB26573040} = {D13AB057-8C1A-4C56-885C-42C5A6E65138}
+		{AE8FE070-4C86-4507-A7F3-C67188F0638F} = {15F1B070-6632-44D3-8098-14D7DB9567A3}
+		{143697DB-A9B5-479B-A227-6E48BBA65A0C} = {398BFF24-CDA2-4D77-80D3-A5BB26573040}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{A9A41891-AAB1-4BC0-B3DD-22342AE97977}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
