@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ServerProxy.HttpApi.Controllers;
+namespace ServerMaster.HttpApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]

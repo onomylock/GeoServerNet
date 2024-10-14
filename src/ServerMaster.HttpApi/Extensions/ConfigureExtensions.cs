@@ -3,7 +3,7 @@ using System.Reflection;
 using Serilog;
 using Serilog.Settings.Configuration;
 
-namespace ServerProxy.HttpApi.Extensions;
+namespace ServerMaster.HttpApi.Extensions;
 
 public static class ConfigureExtensions
 {
