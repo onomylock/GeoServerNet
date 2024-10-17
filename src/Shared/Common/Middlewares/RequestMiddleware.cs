@@ -1,8 +1,10 @@
-﻿using Prometheus;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Prometheus;
 
-namespace ServerNode.HttpApi.Middleware;
+namespace Shared.Common.Middlewares;
 
-public class RequestMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
+public class RequestMiddleware(RequestDelegate next)
 {
     public async Task Invoke(HttpContext httpContext)
     {

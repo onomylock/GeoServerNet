@@ -5,7 +5,7 @@ using MediatR;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Shared.Behaviours;
-using Shared.Models.Options;
+using Shared.Common.Models.Options;
 
 namespace ServerNode.HttpApi.Extensions;
 

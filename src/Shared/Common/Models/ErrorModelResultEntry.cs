@@ -1,6 +1,6 @@
 ﻿using Shared.Enums;
 
-namespace Shared.Models;
+namespace Shared.Common.Models;
 
 public sealed class ErrorModelResultEntry(
     ErrorType errorType,

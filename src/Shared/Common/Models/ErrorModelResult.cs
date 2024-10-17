@@ -1,6 +1,6 @@
-﻿using Shared.Models.DTO.Base;
+﻿using Shared.Common.Models.DTO.Base;
 
-namespace Shared.Models;
+namespace Shared.Common.Models;
 
 public sealed class ErrorModelResult : IDtoResultBase
 {

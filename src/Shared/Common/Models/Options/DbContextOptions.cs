@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Shared.Models.Options;
+namespace Shared.Common.Models.Options;
 
 public class DbContextOptions
 {
