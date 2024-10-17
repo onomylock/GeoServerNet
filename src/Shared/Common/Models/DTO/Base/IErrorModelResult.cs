@@ -1,4 +1,4 @@
-﻿namespace Shared.Models.DTO.Base;
+﻿namespace Shared.Common.Models.DTO.Base;
 
 public interface IErrorModelResult
 {

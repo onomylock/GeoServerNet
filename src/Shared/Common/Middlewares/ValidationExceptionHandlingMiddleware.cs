@@ -1,8 +1,10 @@
-using FluentValidation;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Shared.Common.Models;
 using Shared.Enums;
-using Shared.Models;
 
-namespace ServerMaster.HttpApi.Middleware;
+namespace Shared.Common.Middlewares;
 
 public sealed class ValidationExceptionHandlingMiddleware(RequestDelegate next)
 {

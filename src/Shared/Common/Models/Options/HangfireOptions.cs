@@ -1,4 +1,4 @@
-﻿namespace Shared.Models.Options;
+﻿namespace Shared.Common.Models.Options;
 
 public class HangfireOptions
 {

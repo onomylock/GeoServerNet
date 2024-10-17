@@ -1,13 +1,11 @@
 ﻿using FluentValidation;
 using MediatR;
-using Microsoft.Extensions.Logging;
-using Shared.Models.DTO.Base;
+using Shared.Common.Models.DTO.Base;
 
 namespace Shared.Behaviours;
 
 public class ValidationBehaviour<TRequest, TResponse>(
-    IEnumerable<IValidator<TRequest>> validators,
-    ILogger<ValidationBehaviour<TRequest, TResponse>> logger)
+    IEnumerable<IValidator<TRequest>> validators)
     : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
     where TResponse : IDtoResultBase, new()
