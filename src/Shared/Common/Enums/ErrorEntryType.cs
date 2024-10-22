@@ -1,4 +1,4 @@
-﻿namespace Shared.Enums;
+﻿namespace Shared.Common.Enums;
 
 public enum ErrorEntryType
 {

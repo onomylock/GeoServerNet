@@ -11,4 +11,9 @@
         <Folder Include="Services\"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\ServerNode.Application\ServerNode.Application.csproj" />
+      <ProjectReference Include="..\Shared\Shared.csproj" />
+    </ItemGroup>
+
 </Project>

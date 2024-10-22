@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Shared.Common.Enums;
 using Shared.Common.Models;
-using Shared.Enums;
 
 namespace Shared.Common.Middlewares;
 

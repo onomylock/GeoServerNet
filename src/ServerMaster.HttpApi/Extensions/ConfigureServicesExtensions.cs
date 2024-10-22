@@ -1,7 +1,7 @@
 ﻿using Calabonga.Microservices.Tracker.Extensions;
 using MediatR;
 using Microsoft.OpenApi.Models;
-using Shared.Behaviours;
+using Shared.Common.Behaviours;
 
 namespace ServerMaster.HttpApi.Extensions;
 

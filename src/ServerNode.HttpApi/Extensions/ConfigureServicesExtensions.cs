@@ -4,7 +4,7 @@ using Hangfire.PostgreSql;
 using MediatR;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using Shared.Behaviours;
+using Shared.Common.Behaviours;
 using Shared.Common.Models.Options;
 
 namespace ServerNode.HttpApi.Extensions;

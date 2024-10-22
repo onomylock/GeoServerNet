@@ -2,7 +2,7 @@
 using MediatR;
 using Shared.Common.Models.DTO.Base;
 
-namespace Shared.Behaviours;
+namespace Shared.Common.Behaviours;
 
 public class ValidationBehaviour<TRequest, TResponse>(
     IEnumerable<IValidator<TRequest>> validators)
