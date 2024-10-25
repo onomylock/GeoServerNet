@@ -2,7 +2,7 @@
 
 namespace Shared.Common.Models;
 
-public sealed class ErrorModelResult : IDtoResultBase
+public sealed class ErrorModel : IOutDtoBase
 {
     public List<ErrorModelResultEntry> Errors { get; set; } = [];
 }

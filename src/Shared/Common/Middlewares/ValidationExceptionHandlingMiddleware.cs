@@ -20,7 +20,7 @@ public sealed class ValidationExceptionHandlingMiddleware(RequestDelegate next)
                 .Select(x => new ErrorModelResultEntry(ErrorType.ModelState, x.ErrorMessage))
                 .ToList();
 
-            var errorModelResult = new ErrorModelResult
+            var errorModelResult = new ErrorModel
             {
                 Errors = errors
             };

@@ -6,7 +6,7 @@ using Shared.Domain.Entity;
 
 namespace Shared.Application.Services.Base;
 
-public interface IEntityServiceBase<TEntity> where TEntity : EntityBase
+public interface IEntityServiceBase<TEntity>
 {
     Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default);
     Task<TEntity> SaveAsync(TEntity entity, CancellationToken cancellationToken = default);

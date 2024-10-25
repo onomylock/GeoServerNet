@@ -11,13 +11,20 @@
         <PackageReference Include="EntityFramework.DynamicLinq" Version="1.4.6" />
         <PackageReference Include="FluentValidation" Version="11.10.0"/>
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0"/>
+        <PackageReference Include="Google.Protobuf" Version="3.28.3" />
+        <PackageReference Include="Grpc.Tools" Version="2.67.0">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Hangfire" Version="1.8.14"/>
         <PackageReference Include="Hangfire.PostgreSql" Version="1.20.9"/>
         <PackageReference Include="MediatR" Version="12.4.1"/>
+        <PackageReference Include="MemoryPack" Version="1.21.3" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Minio" Version="6.0.3" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.8" />
         <PackageReference Include="prometheus-net.AspNetCore" Version="8.2.1"/>
         <PackageReference Include="Serilog" Version="4.0.2"/>

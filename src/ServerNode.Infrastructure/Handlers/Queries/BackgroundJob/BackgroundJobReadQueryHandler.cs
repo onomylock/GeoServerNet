@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using ServerNode.Application.Models.Dto.BackgroundJob;
-using Shared.Common.Models.DTO.Base;
+using ServerNode.Application.Models.Dto.BackgroundJob.Requests;
 
 namespace ServerNode.Infrastructure.Handlers.Queries.BackgroundJob;
 
-public class BackgroundJobReadQueryHandler : IRequestHandler<BackgroundJobReadQuery, IResponseDto>
+public class BackgroundJobReadQueryHandler : IRequestHandler<BackgroundJobReadQuery, BackgroundJobReadOutDto>
 {
-    public Task<IResponseDto> Handle(BackgroundJobReadQuery request, CancellationToken cancellationToken)
+    public Task<BackgroundJobReadOutDto> Handle(BackgroundJobReadQuery request, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }
