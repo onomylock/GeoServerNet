@@ -1,23 +1,23 @@
 name: geoserver-infrastructure
 
 services:
-  pg_hagfire:
-    image: postgres:16
+  pg_hangfire:
+    image: postgres:${POSTGRES_VERSION}
     container_name: pg_hangfire
     restart: always
     ports:
       - "5432:5432"
     env_file:
-      - .env/.env_postgres
+      - ..env/.env_postgres
     volumes:
-      - pg_hagfire-storage:/var/lib/postgresql/data/
+      - pg_hangfire-storage:/var/lib/postgresql/data/
 
     pgadmin:
       container_name: pgadmin4_container
-      image: dpage/pgadmin4:8
+      image: page/pgadmin4:${PG_ADMIN_VERSION}
       restart: always
       env_file:
-        - .env/.env_pg_admin
+        - ..env/.env_pg_admin
       ports:
         - "8009:80"
       volumes:
@@ -28,7 +28,7 @@ services:
       container_name: grafana
       restart: unless-stopped
       env_file:
-        - .env/.env_grafana
+        - ..env/.env_grafana
       ports:
         - '3000:3000'
       volumes:
@@ -40,7 +40,7 @@ services:
     container_name: minio
     restart: unless-stopped
     env_file:
-      - ./.env/.env_minio
+      - ../.env/.env_minio
     volumes:
       - minio-storage:/var/lib/minio
     ports:
@@ -49,7 +49,7 @@ services:
     command: server --console-address ":9001" /data
 
   volumes:
-    pg_hagfire_data:
+    pg_hangfire_data:
     pgadmin-data:
     minio-storage:
-    grafana-storage: { }
+    grafana-storage:
