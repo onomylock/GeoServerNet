@@ -1,11 +1,19 @@
-﻿using Calabonga.Microservices.Tracker.Extensions;
+﻿using System.Diagnostics;
+using System.Text.Json.Serialization;
+using Calabonga.Microservices.Tracker.Extensions;
 using Hangfire;
 using Hangfire.PostgreSql;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using Shared.Application.Services;
 using Shared.Common.Behaviours;
+using Shared.Common.Enums;
+using Shared.Common.Models;
 using Shared.Common.Models.Options;
+using Shared.Common.Services;
 
 namespace ServerNode.HttpApi.Extensions;
 
@@ -19,6 +27,11 @@ public static class ConfigureServicesExtensions
             .ConfigureDiAppDbContext(builder.Environment)
             .AddHttpContextAccessor()
             .AddHttpClient()
+            .AddRateLimiter(o => o
+                .AddFixedWindowLimiter(policyName: "fixed", options =>
+                {
+                    // configuration
+                }))
             .AddSwaggerGen(swaggerGenOptions =>
             {
                 swaggerGenOptions.SwaggerDoc("v1", new OpenApiInfo
@@ -41,8 +54,8 @@ public static class ConfigureServicesExtensions
             .ConfigureDiRepositories()
             .ConfigureDiServices()
             .ConfigureDiHandlers()
-            .ConfigureDiBackgroundServices()
             .ConfigureHttp()
+            .ConfigureDiHangfire(builder.Environment)
             .AddCommunicationTracker();
     }
 
@@ -54,6 +67,7 @@ public static class ConfigureServicesExtensions
     private static IServiceCollection ConfigureDiServices(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+        serviceCollection.AddScoped<IWarningService, WarningService>();
 
         return serviceCollection;
     }
@@ -65,11 +79,6 @@ public static class ConfigureServicesExtensions
             cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
             cfg.AddOpenBehavior(typeof(ValidationBehaviour<,>));
         });
-        return serviceCollection;
-    }
-
-    private static IServiceCollection ConfigureDiBackgroundServices(this IServiceCollection serviceCollection)
-    {
         return serviceCollection;
     }
 
@@ -132,6 +141,49 @@ public static class ConfigureServicesExtensions
 
     private static IServiceCollection ConfigureHttp(this IServiceCollection serviceCollection)
     {
+        serviceCollection
+            .Configure<ApiBehaviorOptions>(apiBehaviorOptions =>
+            {
+                // options.SuppressModelStateInvalidFilter = true;
+                apiBehaviorOptions.InvalidModelStateResponseFactory = context =>
+                {
+                    var errorModelResult = new ErrorModelResult();
+
+                    foreach (var modelError in context.ModelState.Values.SelectMany(modelStateValue => modelStateValue.Errors))
+                        errorModelResult.Errors.Add(new ErrorModelResultEntry(ErrorType.ModelState, modelError.ErrorMessage));
+
+                    return new BadRequestObjectResult(errorModelResult);
+                };
+            });
+
+        serviceCollection
+            .AddMvc()
+            .ConfigureApiBehaviorOptions(apiBehaviorOptions =>
+            {
+                // options.SuppressModelStateInvalidFilter = true;
+                apiBehaviorOptions.InvalidModelStateResponseFactory = context =>
+                {
+                    var errorModelResult = new ErrorModelResult();
+
+                    foreach (var modelError in context.ModelState.Values.SelectMany(modelStateValue => modelStateValue.Errors))
+                        errorModelResult.Errors.Add(new ErrorModelResultEntry(ErrorType.ModelState, modelError.ErrorMessage));
+
+                    return new BadRequestObjectResult(errorModelResult);
+                };
+            });
+
+        serviceCollection
+            .AddControllers()
+            .AddControllersAsServices()
+            .AddJsonOptions(jsonOptions =>
+            {
+                jsonOptions.JsonSerializerOptions.PropertyNameCaseInsensitive = false;
+                jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;
+                jsonOptions.JsonSerializerOptions.IncludeFields = true;
+                jsonOptions.JsonSerializerOptions.NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals;
+                jsonOptions.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
+        
         return serviceCollection;
     }
 }

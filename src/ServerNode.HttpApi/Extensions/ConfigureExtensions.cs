@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
+using DotNetEnv;
+using DotNetEnv.Configuration;
 using Serilog;
 using Serilog.Settings.Configuration;
 
@@ -20,7 +22,7 @@ public static class ConfigureExtensions
         {
             app.UseHsts();
         }
-
+        
         app.UseSerilogRequestLogging(options =>
             {
                 options.MessageTemplate =
@@ -50,8 +52,6 @@ public static class ConfigureExtensions
             .UseExceptionHandler("/Error")
             .UseRouting()
             .UseCors()
-            .UseRequestTimeouts()
-            .UseRateLimiter()
             .UseAuthentication()
             .UseAuthorization()
             .UseWebSockets()
@@ -60,10 +60,14 @@ public static class ConfigureExtensions
 
     public static void InitBootstrapLogger()
     {
+        // Load .env file
+        DotNetEnv.Env.Load();
+        
         var configurationRoot = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json", false, false)
             .AddJsonFile("appsettings.Development.json", true, false)
             .AddUserSecrets(Assembly.GetExecutingAssembly())
+            .AddDotNetEnv(".env", LoadOptions.TraversePath())
             .Build();
 
         Log.Logger = new LoggerConfiguration()

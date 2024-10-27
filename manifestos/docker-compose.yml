@@ -1,0 +1,62 @@
+services:
+  pg_hangfire:
+    image: postgres:17
+    container_name: pg_hangfire
+    restart: always
+    ports:
+      - "5432:5432"      
+    env_file:
+      - .env/pd_hangfire.env
+    networks:
+      - postgres
+    volumes:
+      - pg_hangfire-storage:/var/lib/postgresql/data/
+
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4:8
+    restart: always
+    env_file:
+      - .env/pg_admin.env
+    ports:
+      - "8009:80"
+    networks:
+      - postgres
+    volumes:
+      - pgadmin-storage:/var/lib/pgadmin
+  
+  
+networks:
+  postgres:
+    driver: bridge
+
+#  grafana:
+#    image: grafana/grafana
+#    container_name: grafana
+#    restart: unless-stopped
+#    env_file:
+#      - ..env/.env_grafana
+#    ports:
+#      - '3000:3000'
+#    volumes:
+#      - grafana-storage:/var/lib/grafana
+#
+#
+#  minio:
+#    image: minio/minio
+#    container_name: minio
+#    restart: unless-stopped
+#    env_file:
+#      - ../.env/.env_minio
+#    volumes:
+#      - minio-storage:/var/lib/minio
+#    ports:
+#      - "9000:9000" #Allow connection from local network for debugging purposes
+#      - "9001:9001" #Allow connection from local network for debugging purposes
+#    command: server --console-address ":9001" /data
+
+volumes:
+  pg_hangfire-storage:
+  pgadmin-storage:
+#  minio-storage:
+#  grafana-storage:

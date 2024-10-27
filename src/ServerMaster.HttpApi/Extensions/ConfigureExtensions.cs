@@ -50,8 +50,6 @@ public static class ConfigureExtensions
             .UseExceptionHandler("/Error")
             .UseRouting()
             .UseCors()
-            .UseRequestTimeouts()
-            .UseRateLimiter()
             .UseAuthentication()
             .UseAuthorization()
             .UseWebSockets()

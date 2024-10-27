@@ -8,7 +8,8 @@
 
     <ItemGroup>
         <PackageReference Include="Calabonga.Microservices.Tracker" Version="6.0.0"/>
-        <PackageReference Include="EntityFramework.DynamicLinq" Version="1.4.6" />
+        <PackageReference Include="DotNetEnv" Version="3.1.1" />
+        <PackageReference Include="EntityFramework.DynamicLinq" Version="1.4.7" />
         <PackageReference Include="FluentValidation" Version="11.10.0"/>
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0"/>
         <PackageReference Include="Google.Protobuf" Version="3.28.3" />
@@ -20,6 +21,7 @@
         <PackageReference Include="Hangfire.PostgreSql" Version="1.20.9"/>
         <PackageReference Include="MediatR" Version="12.4.1"/>
         <PackageReference Include="MemoryPack" Version="1.21.3" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -31,9 +33,12 @@
         <PackageReference Include="Serilog.AspNetCore" Version="8.0.3"/>
         <PackageReference Include="Serilog.Enrichers.AssemblyName" Version="2.0.0"/>
         <PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.1"/>
+        <PackageReference Include="Serilog.Enrichers.GlobalLogContext" Version="3.0.0" />
         <PackageReference Include="Serilog.Enrichers.Memory" Version="1.0.4"/>
         <PackageReference Include="Serilog.Enrichers.Process" Version="3.0.0"/>
         <PackageReference Include="Serilog.Enrichers.Thread" Version="4.0.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.9.0" />
     </ItemGroup>
 
 </Project>
