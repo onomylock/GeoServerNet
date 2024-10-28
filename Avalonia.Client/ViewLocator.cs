@@ -2,6 +2,7 @@ using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using Avalonia.Client.ViewModels;
+using Avalonia.Client.ViewModels.Base;
 
 namespace Avalonia.Client;
 

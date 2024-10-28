@@ -1,3 +1,4 @@
+using System;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
@@ -5,6 +6,7 @@ using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 using Avalonia.Client.ViewModels;
 using Avalonia.Client.Views;
+using Splat;
 
 namespace Avalonia.Client;
 
@@ -17,15 +19,27 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        BindingPlugins.DataValidators.RemoveAt(0);
+        switch (ApplicationLifetime)
         {
-            // Line below is needed to remove Avalonia data validation.
-            // Without this line you will get duplicate validations from both Avalonia and CT
-            BindingPlugins.DataValidators.RemoveAt(0);
-            desktop.MainWindow = new MainWindow
-            {
-                DataContext = new MainWindowViewModel(),
-            };
+            case IClassicDesktopStyleApplicationLifetime desktop:
+                try
+                {
+                    DataContext = Locator.Current.GetService<MainViewModel>();
+                    desktop.MainWindow = new MainWindow
+                    {
+                        DataContext = DataContext
+                    };
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e, "");
+                    throw;
+                }
+
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
         base.OnFrameworkInitializationCompleted();
