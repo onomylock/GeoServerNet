@@ -37,6 +37,7 @@
         <PackageReference Include="Serilog.Enrichers.Memory"/>
         <PackageReference Include="Serilog.Enrichers.Process"/>
         <PackageReference Include="Serilog.Enrichers.Thread"/>
+        <PackageReference Include="SharpZipLib" />
         <PackageReference Include="Swashbuckle.AspNetCore"/>
         <PackageReference Include="Swashbuckle.AspNetCore.Annotations"/>
     </ItemGroup>

@@ -2,6 +2,7 @@
     
 
     <ItemGroup>
+        <Folder Include="Handlers\Queries\File\" />
         <Folder Include="Mappers\"/>
         <Folder Include="Services\" />
     </ItemGroup>

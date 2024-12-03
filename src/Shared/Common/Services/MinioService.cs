@@ -16,8 +16,7 @@ public class MinioService : IMinioService
     {
         var minioOptionsValue = minioOptions.Value;
 
-        _minioClient = minioClient
-            .WithSSL(minioOptionsValue.WithSsl);
+        _minioClient = minioClient;
     }
 
     public async Task SaveAsync(Stream file, string fileName, string bucketName, long objectSize, CancellationToken cancellationToken = default)
