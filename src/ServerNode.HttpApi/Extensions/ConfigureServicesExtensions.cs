@@ -40,14 +40,13 @@ public static class ConfigureServicesExtensions
                     Version = "v1",
                     TermsOfService = null,
                     Description = $"""
-                                   An HTTP API of User backend service [Branch: {builder.Configuration["GIT_BRANCH"] ?? "Unknown"}, Commit: {builder.Configuration["GIT_REV"] ?? "Unknown"}]
+                                   An HTTP API of Server Node backend service [Branch: {builder.Configuration["GIT_BRANCH"] ?? "Unknown"}, Commit: {builder.Configuration["GIT_REV"] ?? "Unknown"}]
 
                                    For SignalR hubs, connect via <a href="https://www.npmjs.com/package/@microsoft/signalr">@microsoft/signalr</a> (<a href="https://pastebin.com/raw/7qpSm1C1">Example</a>)
                                    """
                 });
 
-                swaggerGenOptions.IncludeXmlComments(Path.Join(AppDomain.CurrentDomain.BaseDirectory,
-                    "UserService.HttpApi.xml"));
+                
 
                 swaggerGenOptions.EnableAnnotations();
             })
@@ -74,6 +73,8 @@ public static class ConfigureServicesExtensions
 
     private static IServiceCollection ConfigureDiHandlers(this IServiceCollection serviceCollection)
     {
+        var assem = AppDomain.CurrentDomain.GetAssemblies();
+        
         serviceCollection.AddMediatR(cfg =>
         {
             cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
@@ -122,7 +123,9 @@ public static class ConfigureServicesExtensions
 
         serviceCollection.AddHangfireServer(options =>
             options.ServerName = $"{Environment.MachineName}");
-
+        
+        
+        
         return serviceCollection;
     }
 

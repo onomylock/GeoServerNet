@@ -2,6 +2,7 @@
 using System.Reflection;
 using DotNetEnv;
 using DotNetEnv.Configuration;
+using Hangfire;
 using Serilog;
 using Serilog.Settings.Configuration;
 
@@ -54,6 +55,8 @@ public static class ConfigureExtensions
             .UseCors()
             .UseAuthentication()
             .UseAuthorization()
+            //TODO: implement Dashboards in Master server
+            .UseHangfireDashboard()
             .UseWebSockets()
             .UseEndpoints(endpointRouteBuilder => { endpointRouteBuilder.MapControllers(); });
     }
@@ -61,7 +64,7 @@ public static class ConfigureExtensions
     public static void InitBootstrapLogger()
     {
         // Load .env file
-        DotNetEnv.Env.Load();
+        Env.Load();
         
         var configurationRoot = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json", false, false)
