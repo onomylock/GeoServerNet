@@ -1,8 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <Folder Include="Solution\Queries\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ServerNode.Application\ServerNode.Application.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
