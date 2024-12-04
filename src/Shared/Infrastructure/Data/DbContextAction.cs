@@ -1,9 +1,7 @@
-﻿
-using System.Data;
+﻿using System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Shared.Application.Data;
-using Shared.Common.Exceptions;
 using Shared.Domain.Entity;
 
 namespace Shared.Infrastructure.Data;
@@ -159,7 +157,7 @@ public class DbContextAction<TDbContext>(TDbContext dbContext) : IDbContextActio
         }
     }
 
-    public class AnotherTransactionInProgressException : LocalizedException;
+    public class AnotherTransactionInProgressException : Exception;
 
-    public class NoTransactionInProgressException : LocalizedException;
+    public class NoTransactionInProgressException : Exception;
 }

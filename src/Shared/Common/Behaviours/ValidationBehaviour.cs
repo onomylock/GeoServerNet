@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
+using Shared.Common.Exceptions;
 using Shared.Common.Models.DTO.Base;
 
 namespace Shared.Common.Behaviours;
@@ -8,7 +9,6 @@ public class ValidationBehaviour<TRequest, TResponse>(
     IEnumerable<IValidator<TRequest>> validators)
     : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
-    where TResponse : IOutDtoBase, new()
 {
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next,
         CancellationToken cancellationToken)
@@ -21,12 +21,11 @@ public class ValidationBehaviour<TRequest, TResponse>(
         var errors = validationFailures
             .Where(validationResult => !validationResult.IsValid)
             .SelectMany(validationResult => validationResult.Errors)
+            .Select(r => new ErrorBase { PropertyMessage = r.PropertyName, ErrorMessage = r.ErrorMessage })
             .ToList();
 
-        if (errors.Count != 0) throw new ValidationException(errors);
+        if (errors.Any()) throw new CustomValidationException(errors);
 
-        var response = await next();
-
-        return response;
+        return await next();
     }
 }

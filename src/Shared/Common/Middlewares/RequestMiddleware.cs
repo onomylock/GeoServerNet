@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Prometheus;
 
 namespace Shared.Common.Middlewares;
@@ -36,13 +35,5 @@ public class RequestMiddleware(RequestDelegate next)
             statusCode = httpContext.Response.StatusCode;
             counter.Labels(path!, method, statusCode.ToString()).Inc();
         }
-    }
-}
-
-public static class RequestMiddlewareExtensions
-{
-    public static IApplicationBuilder UseRequestMiddleware(this IApplicationBuilder builder)
-    {
-        return builder.UseMiddleware<RequestMiddleware>();
     }
 }

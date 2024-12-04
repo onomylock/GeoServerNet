@@ -8,32 +8,36 @@ namespace Shared.Common.Services;
 
 public class FileService : IFileService
 {
-    public async Task<string> ExtractArchiveAsync(Stream stream, string buildName, CancellationToken cancellationToken = default)
+    public async Task<string> ExtractArchiveAsync(Stream stream, string destinationPath, CancellationToken cancellationToken = default)
     {
         await using var gZipStream = new GZipInputStream(stream);
         await using var tarInputStream = new TarInputStream(gZipStream, Encoding.UTF8);
         
-        var buildOutputPath = Path.Combine(FileHelper.BuildsPath, buildName + DateTimeOffset.UtcNow.ToUnixTimeSeconds());
+        if(string.IsNullOrEmpty(destinationPath))
+            throw new ArgumentNullException(nameof(destinationPath));
+        
+        if(!Directory.Exists(destinationPath))
+            Directory.CreateDirectory(destinationPath);
         
         while (await tarInputStream.GetNextEntryAsync(cancellationToken) is { } tarEntry)
         {
             if(tarEntry.IsDirectory)
                 continue;
 
-            await using var fs = new FileStream(Path.Combine(buildOutputPath, tarEntry.Name), FileMode.OpenOrCreate, FileAccess.Write);
+            await using var fs = new FileStream(Path.Combine(destinationPath, tarEntry.Name), FileMode.OpenOrCreate, FileAccess.Write);
             
             await tarInputStream.CopyEntryContentsAsync(fs, cancellationToken);
             fs.Seek(0, SeekOrigin.Begin);
         }
 
-        return buildOutputPath;
+        return destinationPath;
     }
 
-    public async Task<Stream> ZipFolderAsync(string path, CancellationToken cancellationToken = default)
+    public async Task<Stream> ZipFolderAsync(string sourcePath, CancellationToken cancellationToken = default)
     {
         var tempDirectory = Directory.CreateTempSubdirectory();
         
-        CopyDirectory(Path.Combine(FileHelper.BuildsPath, path), tempDirectory.FullName, true);
+        CopyDirectory( sourcePath, tempDirectory.FullName, true);
 
         var memoryStream = new MemoryStream();
         var gZipOutputStream = new GZipOutputStream(memoryStream);

@@ -1,40 +1,24 @@
-﻿using FluentValidation;
-using Microsoft.AspNetCore.Builder;
+﻿using System.Text.Json;
 using Microsoft.AspNetCore.Http;
-using Shared.Common.Enums;
-using Shared.Common.Models;
+using Shared.Common.Exceptions;
+using Shared.Common.Models.DTO.Base;
 
 namespace Shared.Common.Middlewares;
 
-public sealed class ValidationExceptionHandlingMiddleware(RequestDelegate next)
+public class ValidationMiddleware(RequestDelegate next)
 {
-    public async Task InvokeAsync(HttpContext context)
+    private readonly RequestDelegate _next = next ?? throw new ArgumentNullException(nameof(next));
+
+    public async Task Invoke(HttpContext context)
     {
         try
         {
-            await next(context);
+            await _next.Invoke(context);
         }
-        catch (ValidationException exception)
+        catch (CustomValidationException ex)
         {
-            var errors = exception.Errors
-                .Select(x => new ErrorModelResultEntry(ErrorType.ModelState, x.ErrorMessage))
-                .ToList();
-
-            var errorModelResult = new ErrorModelResult
-            {
-                Errors = errors
-            };
-
-            context.Response.StatusCode = StatusCodes.Status400BadRequest;
-            await context.Response.WriteAsJsonAsync(errorModelResult);
+            context.Response.ContentType = "application/json";
+            await JsonSerializer.SerializeAsync(context.Response.Body, new ResponseBase<object> { Message = "Validation Errors", Errors = ex.Errors });
         }
-    }
-}
-
-public static class ValidationExceptionHandlingMiddlewareExtension
-{
-    public static IApplicationBuilder UseValidationExceptionHandlingMiddleware(this IApplicationBuilder builder)
-    {
-        return builder.UseMiddleware<ValidationExceptionHandlingMiddleware>();
     }
 }
