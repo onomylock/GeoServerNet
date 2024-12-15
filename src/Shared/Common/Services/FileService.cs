@@ -63,6 +63,11 @@ public class FileService : IFileService
         return memoryStream;
     }
 
+    public Task DeleteFolderAsync(string path, CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+
     private static void CopyDirectory(string sourceDir, string destinationDir, bool recursive)
     {
         // Get information about the source directory

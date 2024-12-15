@@ -3,6 +3,7 @@ using MediatR;
 using ServerNode.Application.Models.Dto.Solution;
 using ServerNode.Application.Services.Data;
 using ServerNode.Infrastructure.Helpers;
+using ServerNode.Infrastructure.Mappers;
 using Shared.Application.Data;
 using Shared.Application.Services;
 using Shared.Common.Models.DTO.Base;
@@ -25,7 +26,7 @@ public class SolutionDownloadHandler(
         {
             await validator.ValidateAndThrowAsync(request, cancellationToken);
 
-            var uri = await minioService.GetFileUrl(request.FileName, request.BucketName, cancellationToken);
+            var uri = await minioService.GetFileUrl(request.Path, request.BucketName, cancellationToken);
             
             var requestStream = await httpClient.GetStreamAsync(uri, cancellationToken);
 
@@ -37,14 +38,15 @@ public class SolutionDownloadHandler(
             {
                 CreatedAt = DateTimeOffset.UtcNow,
                 MasterId = request.Id,
-                Metadata = request.Metadata
+                Metadata = request.Metadata,
+                Path = solutionPath
             };
             
             await solutionEntityService.SaveAsync(targetSolution, cancellationToken);
             
             await dbContextTransactionAction.CommitTransactionAsync(cancellationToken);
             
-            response.Data = targetSolution;
+            response.Data = SolutionMapper.ToSolutionReadDto(targetSolution);
         }
         catch (Exception e)
         {

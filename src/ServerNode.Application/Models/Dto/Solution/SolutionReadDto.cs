@@ -2,4 +2,8 @@ using Shared.Common.Models.DTO.Base;
 
 namespace ServerNode.Application.Models.Dto.Solution;
 
-public class SolutionReadDto : EntityResponseBase;
+public class SolutionReadDto : EntityResponseBase
+{
+    public string Name { get; set; }
+    
+}
