@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ServerNode.Application.Models.Dto;
+namespace ServerNode.Application.Models.Dto.Job;
 
-public class JobDto
+public class JobReadDto
 {
     [Required] public string JobId { get; set; }
 }
